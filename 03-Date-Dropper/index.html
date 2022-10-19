@@ -14,38 +14,42 @@
         <div class="row  h-100">
             <div class="col-sm-12">
                 <div class="col-md-5  bg-primary rounded mx-auto">
-                    <form class="text-left mx-auto card  p-4 w-100 p-2 shadow-lg p-3 mb-5 rounded " autocomplete="off">
-                        <h1 class="h3 mb-3"><span >ลงทะเบียน</span> </h1>
+                    <form class="text-left mx-auto   p-4 w-100 p-2 shadow-lg p-3 mb-5 rounded row g-3 bg-white">
+                        <h1 class="h3 mb-2"><span >ลงทะเบียน</span>พนักงาน </h1>
                          <p> ระบุข้อมูลด้านล่างเพื่อทำการลงทะเบียน.</p>
-                        <div class="mb-3 mt-4 ">
+
+                        <div class="col-md-6">
                             <label for="user" class="form-label">Username</label>
                             <input type="text" class="form-control" id="user" placeholder="กรุณาป้อนยูสเซอร์ของท่าน">
                         </div>
+                        <div class="col-md-6">
+                            <label for="user" class="form-label">Password</label>
 
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-group mb-3">
                             <input type="password" id="password" name="current-password" autocomplete="current-password" class="form-control rounded" spellcheck="false" autocorrect="off" autocapitalize="off" placeholder="ป้อนรหัสผ่าน" required>
                             <button id="toggle-password" type="button">
-                            </button>
                         </div>
-
-                        <div class="mb-3  ">
-                            <label for="fullname" class="form-label">ชื่อ - นามสกุล</label>
+                        <div class="col-12">
+                            <label  class="form-label">ชื่อ - นามสกุล</label>
                             <input type="text" class="form-control" id="fullname" placeholder="กรุณาป้อน ชื่อ นามสกุล">
                         </div>
-
-                        <label  class="form-label">วันเกิด</label>
-                        <div class="input-group mb-3">
-                            <input type="text" id="date_input" class="form-control datedropper-ini"   placeholder="กรุณาเลือกวัน" data-dd-opt-custom-class="style1">
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="email" placeholder="กรุณาป้อนที่อยู่ อีเมล">
                         </div>
-                        <div class="mb-3  ">
-                            <label for="address" class="form-label">ที่อยู่</label>
-                            <input type="text" class="form-control" id="address" placeholder="กรุณาป้อน ที่อยู่">
+                        <div class="col-12">
+                            <label  class="form-label">วันเกิด</label>
+                           <input type="text" id="date_input" class="form-control datedropper-ini"   placeholder="กรุณาเลือกวันเกิด" >
                         </div>
-                        <div class="text-center d-grid gap-2 mb-3">
+                        <div class="col-12">
+                          <label for="Address" class="form-label">ที่อยู่</label>
+                          <textarea class="form-control" id="Address" rows="3" placeholder="กรุณาระบุที่อยู่ จังหวัด ตำบล รหัสไปรษณีย์ให้ละเอียด"></textarea>
+                        </div>
+                       
+                        <div class="text-center d-grid gap-2 mb-3 mt-3">
                             <button type="button" id="dateInput" class="btn btn-lg btn-outline-orange mt-3" onclick="saveItem()">ลงทะเบียน</button>
                         </div>
-                    </form>
+                      </form>
+                      
                 </div>
             </div>
         </div>
@@ -125,10 +129,29 @@
                     cursor: '|'
             }
         });
-  
         superplaceholder({
-            el: document.getElementById('address'),
-            sentences: [ 'กรุณาป้อน ที่อยู่', 'เพื่อลงทะเบียน'],
+            el: document.getElementById('email'),
+            sentences: [ 'กรุณาป้อนที่อยู่ อีเมล', 'เพื่อลงทะเบียน'],
+            options:{
+                   // delay between letters (in milliseconds)
+                    letterDelay: 100, // milliseconds
+                    // delay between sentences (in milliseconds)
+                    sentenceDelay: 1000,
+                    // should start on input focus. Set false to autostart
+                    startOnFocus: true,
+                    // loop through passed sentences
+                    loop: true,
+                    // Initially shuffle the passed sentences
+                    shuffle: false, // true false
+                    // Show cursor or not. Shows by default
+                    showCursor: true,
+                    // String to show as cursor
+                    cursor: '|'
+            }
+        });
+        superplaceholder({
+            el: document.getElementById('Address'),
+            sentences: [ 'กรุณาระบุที่อยู่ จังหวัด ตำบล รหัสไปรษณีย์ให้ละเอียด', 'เพื่อลงทะเบียน'],
             options:{
                    // delay between letters (in milliseconds)
                     letterDelay: 100, // milliseconds
