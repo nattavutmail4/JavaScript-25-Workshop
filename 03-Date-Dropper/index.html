@@ -25,14 +25,21 @@
                 position: relative;
                 font-family: 'Prompt', sans-serif;
             }
-            .picker{
-                --dd-color1: #fd4741;
-                --dd-color2: white;
-                --dd-color3: #4D4D4D;
-                --dd-color4: white;
-                --dd-radius: 6px;
-                --dd-width: 180px;
-                --dd-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.1);
+            .btn-outline-d {
+                --bs-btn-color: #dd460a;
+                --bs-btn-border-color: #fda30d;
+                --bs-btn-hover-color: #fff;
+                --bs-btn-hover-bg: #fda30d;
+                --bs-btn-hover-border-color: #fda30d;
+                --bs-btn-focus-shadow-rgb: 13,110,253;
+                --bs-btn-active-color: #fff;
+                --bs-btn-active-bg: #fda30d;
+                --bs-btn-active-border-color: #fda30d;
+                --bs-btn-active-shadow: inset 0 3px 5pxrgba(0, 0, 0, 0.125);
+                --bs-btn-disabled-color: #fda30d;
+                --bs-btn-disabled-bg: transparent;
+                --bs-btn-disabled-border-color: #fda30d;
+                --bs-gradient: none;
             }
     </style>
 </head>
@@ -42,7 +49,7 @@
             <div class="col-sm-12">
                 <div class="col-md-5  bg-primary rounded mx-auto">
                     <form class="text-left mx-auto card  p-4 w-100 p-2 shadow-lg p-3 mb-5 rounded " autocomplete="off">
-                        <h1 class="h3 mb-3 text-center "></h1>
+                        <h1 class="h3 mb-3 text-center "><span class="shadow-none p-3 mb-5">ลงทะเบียน</span> </h1>
                         <label for="date-input" class="form-label">วันเกิด</label>
                         <div class="input-group mb-3">
                             <input type="text" id="date-input" class="form-control datedropper-ini"   placeholder="กรุณาเลือกวัน">
@@ -62,7 +69,7 @@
                         </div>
                        
                         <div class="text-center d-grid gap-2 mb-3">
-                            <button type="button" id="dateInput" class="btn btn-outline-primary mt-3">ลงทะเบียน</button>
+                            <button type="button" id="dateInput" class="btn btn-outline-d mt-3">ลงทะเบียน</button>
                         </div>
                     </form>
                 </div>
