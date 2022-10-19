@@ -25,7 +25,7 @@
                 position: relative;
                 font-family: 'Prompt', sans-serif;
             }
-            .btn-outline-d {
+            .btn-outline-orange{
                 --bs-btn-color: #dd460a;
                 --bs-btn-border-color: #fda30d;
                 --bs-btn-hover-color: #fff;
@@ -49,13 +49,10 @@
             <div class="col-sm-12">
                 <div class="col-md-5  bg-primary rounded mx-auto">
                     <form class="text-left mx-auto card  p-4 w-100 p-2 shadow-lg p-3 mb-5 rounded " autocomplete="off">
-                        <h1 class="h3 mb-3 text-center "><span class="shadow-none p-3 mb-5">ลงทะเบียน</span> </h1>
-                        <label for="date-input" class="form-label">วันเกิด</label>
-                        <div class="input-group mb-3">
-                            <input type="text" id="date-input" class="form-control datedropper-ini"   placeholder="กรุณาเลือกวัน">
-                        </div>
+                        <h1 class="h3 mb-3"><span >ลงทะเบียน</span> </h1>
+                         <p> ระบุข้อมูลด้านล่างเพื่อทำการลงทะเบียน.</p>
 
-                        <div class="mb-3">
+                        <div class="mb-3 mt-4 ">
                             <label for="user" class="form-label">Username</label>
                             <input type="text" class="form-control" id="user" placeholder="กรุณาป้อนยูสเซอร์ของท่าน">
                         </div>
@@ -67,9 +64,20 @@
                               aria-label="Show password as plain text. Warning: this will display your password on the screen.">
                             </button>
                         </div>
+
+                        <div class="mb-3  ">
+                            <label for="fullname" class="form-label">ชื่อ - นามสกุล</label>
+                            <input type="text" class="form-control" id="fullname" placeholder="กรุณาป้อน ชื่อ นามสกุล">
+                        </div>
+
+
+                        <label for="date-input" class="form-label">วันเกิด</label>
+                        <div class="input-group mb-3">
+                            <input type="text" id="date-input" class="form-control datedropper-ini"   placeholder="กรุณาเลือกวัน">
+                        </div>
                        
                         <div class="text-center d-grid gap-2 mb-3">
-                            <button type="button" id="dateInput" class="btn btn-outline-d mt-3">ลงทะเบียน</button>
+                            <button type="button" id="dateInput" class="btn btn-lg btn-outline-orange mt-3">ลงทะเบียน</button>
                         </div>
                     </form>
                 </div>
@@ -135,6 +143,26 @@
         superplaceholder({
             el: document.getElementById('date-input'),
             sentences: [ 'กรุณาป้อนวันเกิด', 'เพื่อลงทะเบียน'],
+            options:{
+                   // delay between letters (in milliseconds)
+                    letterDelay: 100, // milliseconds
+                    // delay between sentences (in milliseconds)
+                    sentenceDelay: 1000,
+                    // should start on input focus. Set false to autostart
+                    startOnFocus: true,
+                    // loop through passed sentences
+                    loop: true,
+                    // Initially shuffle the passed sentences
+                    shuffle: false, // true false
+                    // Show cursor or not. Shows by default
+                    showCursor: true,
+                    // String to show as cursor
+                    cursor: '|'
+            }
+        });
+        superplaceholder({
+            el: document.getElementById('fullname'),
+            sentences: [ 'กรุณาป้อน ชื่อ นามสกุล', 'เพื่อลงทะเบียน'],
             options:{
                    // delay between letters (in milliseconds)
                     letterDelay: 100, // milliseconds
