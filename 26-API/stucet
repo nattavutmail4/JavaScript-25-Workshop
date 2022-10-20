@@ -1,0 +1,5 @@
+{ Our API}
+{ /products }      
+    }-> GET POST
+{ /products/{id}}
+    }-> GET PATCH DELETE}
