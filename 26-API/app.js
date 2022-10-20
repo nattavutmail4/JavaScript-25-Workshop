@@ -1,6 +1,14 @@
 const express = require('express');
 const app  = express();
-const morgan =require('morgan');
+
+/**
+ *  Morgan เป็น middleware สำหรับเก็บ log จาก HTTP request
+ * ใน NodeJS ซึ่งการเก็บ log นั้นจะทำให้เราสามารถติดตามดูได้ว่ามีเหตุการณ์อะไรเกิดขึ้นจาก request
+ * ไหนบ้าง ถ้ามี error โผล่ขึ้นมาก็จะตามหาสาเหตุได้ง่าย ๆ
+ * 
+ */
+
+const morgan =require('morgan'); 
 const bodyParser = require('body-parser')
 require('dotenv').config();
 const port = process.env.PORT || 3030; 
@@ -8,6 +16,7 @@ const port = process.env.PORT || 3030;
 const productRouters =  require('./routes/products');
 const orderRouters   =  require('./routes/orders');
 
+//morgan('') ประกอบไปด้วย  combined common dev short tiny
 app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({extended:false}));

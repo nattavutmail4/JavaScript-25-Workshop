@@ -1,6 +1,9 @@
 const express = require('express');
 const router  = express.Router();
-
+/**
+ * สำหรับ  http สามารถดูได้ที่ลิงค์
+ * https://tips.thaiware.com/1077.html
+ */
 const products = [
     {
       "id": 1,
@@ -96,7 +99,7 @@ router.post('/',(req,res,next)=>{
          price:price
     }
     res.status(201).json({
-        message:"Handling POST requests to /products",
+        message:"Create Product success",
         createdProduct:ItemProduct
     });
 });
