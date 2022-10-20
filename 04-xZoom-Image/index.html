@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop4 การทำ Product Zoom ด้วย X-Zoom</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- zoom css-->
+    <link rel="stylesheet" href="./dist/xzoom.min.css">
+    <link type="text/css" rel="stylesheet" media="all" href="fancybox/source/jquery.fancybox.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="./magnific-popup/css/magnific-popup.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row ">
+            <div class="col-sm-4 mt-3">
+              <div class="col-sm-12 mt-5"><h3>Default options</h3></div>
+                <div class="xzoom-container">
+                <img class="xzoom" id="xzoom-default" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
+                <div class="xzoom-thumbs mt-3">
+                    <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+                </div>
+                </div>        
+            </div>
+
+            <div class="col-sm-4 mt-3">
+                <div class="col-sm-12 mt-5"><h3>Output window</h3></div>
+                <div class="xzoom-container">
+                <img class="xzoom2" id="xzoom-default" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
+                <div class="xzoom-thumbs mt-3">
+                    <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery2" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery2" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery2" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery2" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+                </div>
+                </div>        
+            </div>
+
+            <div class="col-sm-4 mt-3">
+                <div class="col-sm-12 mt-5"><h3>Lens options</h3></div>
+                <div class="xzoom-container">
+                <img class="xzoom3" id="xzoom-default" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
+                <div class="xzoom-thumbs mt-3">
+                    <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery3" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery3" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery3" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery3" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+                </div>
+                </div>        
+            </div>
+
+            <div class="col-sm-4 mt-3">
+                <div class="col-sm-12 mt-5"><h3>With Fancy Box</h3>Left click while zooming</div>
+                <div class="xzoom-container">
+                <img class="xzoom4" id="xzoom-default" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
+                <div class="xzoom-thumbs mt-3">
+                    <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery4" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+                </div>
+                </div>        
+            </div>
+            <div class="col-sm-4 mt-3">
+                <div class="col-sm-12 mt-5"><h3>With Magnific Pop-up</h3>Left click while zooming</div>
+                <div class="xzoom-container">
+                <img class="xzoom5" id="xzoom-default" src="images/gallery/preview/01_b_car.jpg" xoriginal="images/gallery/original/01_b_car.jpg" />
+                <div class="xzoom-thumbs mt-3">
+                    <a href="images/gallery/original/01_b_car.jpg"><img class="xzoom-gallery5" width="80" src="images/gallery/thumbs/01_b_car.jpg"  xpreview="images/gallery/preview/01_b_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/02_o_car.jpg"><img class="xzoom-gallery5" width="80" src="images/gallery/preview/02_o_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/03_r_car.jpg"><img class="xzoom-gallery5" width="80" src="images/gallery/preview/03_r_car.jpg" title="The description goes here"></a>
+                    <a href="images/gallery/original/04_g_car.jpg"><img class="xzoom-gallery5" width="80" src="images/gallery/preview/04_g_car.jpg" title="The description goes here"></a>
+                </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./dist/xzoom.min.js"></script>
+    <script type="text/javascript" src="./fancybox/source/jquery.fancybox.js"></script>
+    <script type="text/javascript" src="./magnific-popup/js/magnific-popup.js"></script>  
+    <script type="text/javascript" src="hammer.js/1.0.5/jquery.hammer.min.js"></script>  
+    <script type="text/javascript" src="fancybox/source/jquery.fancybox.js"></script>
+    <script src="./js/foundation.min.js"></script>
+    <script src="./js/setup.js"></script>
+
+  <!-- hammer plugin here -->
+  <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+</body>
+</html>
