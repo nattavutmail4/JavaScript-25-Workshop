@@ -15,6 +15,7 @@ const port = process.env.PORT || 3030;
 
 const productRouters =  require('./routes/products');
 const orderRouters   =  require('./routes/orders');
+const studentRouters =  require('./routes/students')
 
 //morgan('') ประกอบไปด้วย  combined common dev short tiny
 app.use(morgan('dev'));
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 //Routes which should handle requests
 app.use('/products',productRouters);
 app.use('/orders',orderRouters);
+app.use('/students',studentRouters)
 
 app.use((req,res,next)=>{
     const error = new Error('Not found');
