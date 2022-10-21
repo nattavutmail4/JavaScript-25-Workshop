@@ -3,3 +3,4 @@
     }-> GET POST
 { /products/{id}}
     }-> GET PATCH DELETE}
+    DELETE Our API
