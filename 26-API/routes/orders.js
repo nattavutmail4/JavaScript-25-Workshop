@@ -1,7 +1,9 @@
+const { response } = require('express');
 const express = require('express');
 const router  = express.Router();
 const mongoose =require('mongoose');
 const { restart } = require('nodemon');
+const { count } = require('../modules/order');
 
 const Order = require("../modules/order");
 const Product = require('../modules/product');
@@ -52,26 +54,46 @@ router.post('/',(req,res,next)=>{
        {
             return  res.status(404).json({message  :  'Product not found'});
        }
-
-       const  order = new Order({
-           _id : mongoose.Types.ObjectId(),
-           product: req.body.productId,
-           quantity: req.body.quantity
-       });
-      return order.save();
+       return true
    }).then(resultSave =>{
-        return res.status(201).json({
-            message:"Order stored",
-            response:{
-                _id:resultSave._id,
-                product:resultSave.product,
-                quantity:resultSave.quantity
-            },
-            request:{
-                 type:"GET",
-                 url:`http://localhost:${process.env.PORT || 3030}/api/v1/order/${resultSave._id}`
-            }
-        })
+        if(resultSave === true){
+           Order.find({ product:req.body.productId}).exec().then(rs=>{
+              const count_row =  rs.length;
+              if(!count_row){ // เช็ค id product ว่ามีอยู่ในฐานข้อมูลแล้วหรือยัง
+                  console.log(req.body)
+                  const order = new Order({
+                      _id : new mongoose.Types.ObjectId(),
+                      product:req.body.productId,
+                      quantity:req.body.quantity
+                  });
+                  order.save().then(result =>{
+                      if(result){
+                          res.status(201).json({
+                             message:"Create order successfully",
+                             response:{
+                                product:result.product,
+                                quantity:result.quantity,
+                                _id:result._id,
+                                request:{
+                                    type:"GET",
+                                    url:`http://localhost:${process.env.PORT || 3030}/api/v1/order/${result._id}`
+                                }
+                             }
+                          })
+                      }else{
+                        res.status(404).json({
+                          message:"Create order false",
+                          error:err
+                       })
+                      }
+                  })
+              }else{
+                 return res.status(404).json({
+                    message:"มีรายการสินค้านี้ในระบบแล้ว"
+                 })
+              }
+           })
+        }
    }).catch(err =>{
      return   res.status(500).json({
             error: err
@@ -83,21 +105,27 @@ router.get("/:orderId", (req, res, next) => {
     Order.findById(req.params.orderId)
       .exec()
       .then(order => {
-        if (!order) {
-          return res.status(404).json({
-            message: "Order not found"
-          });
+        if(order){
+          return res.status(200).json({
+              response:{
+                  _id:order._id,
+                  product:order.product,
+                  quantity:order.quantity,
+                  request:{
+                    type:'GET',
+                    url:`http://localhost:${process.env.PORT || 3030}/api/v1/orders/${order._id}`
+                  }
+              }
+           })
+        }else{
+           return res.status(404).json({
+              message:"Order not found"
+           });
         }
-        res.status(200).json({
-          order: order,
-          request: {
-            type: "GET",
-            url:`http://localhost:${process.env.PORT || 3030}/api/v1/order/${resultSave._id}`
-          }
-        });
       })
       .catch(err => {
         res.status(500).json({
+          message:"GET ERROR Order ",
           error: err
         });
       });
@@ -111,7 +139,7 @@ router.delete("/:orderId", (req, res, next) => {
           message: "Order deleted",
           request: {
             type: "POST",
-            url: "http://localhost:3000/orders",
+            url:`http://localhost:${process.env.PORT || 3030}/api/v1/orders`,
             body: { productId: "ID", quantity: "Number" }
           }
         });
