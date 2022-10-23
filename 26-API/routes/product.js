@@ -1,7 +1,9 @@
 const express = require('express');
 const router  = express.Router();
 const mongoose =require('mongoose');
+
 const multer = require('multer');
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads')
@@ -11,7 +13,7 @@ const storage = multer.diskStorage({
       cb(null, uniqueSuffix)
     }
 })
-const fileFilter = (req,file,cb)=>{
+const fileFilter = (req,file,cb)=>{ //cb = callback
     if(file.mimetype ==='image/jpeg' ||  file.mimetype ==='image/png' ){
         cb(null, true)
     }else{
