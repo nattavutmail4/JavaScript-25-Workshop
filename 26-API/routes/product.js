@@ -1,17 +1,40 @@
 const express = require('express');
 const router  = express.Router();
 const mongoose =require('mongoose');
-const { restart } = require('nodemon');
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)+file.originalname
+      cb(null, uniqueSuffix)
+    }
+})
+const fileFilter = (req,file,cb)=>{
+    if(file.minetype === 'image/jpeg' || file.minetype ==='image/png'){
+        cb(null,true);
+    }else{
+        cb(null,false);
+    }
+}
 
-const Product = require('../modules/product');
+const upload = multer({
+      storage: storage ,
+      
+});
+const Product = require('../modules/products');
+
 /**
  * สำหรับ  http สามารถดูได้ที่ลิงค์
  * https://tips.thaiware.com/1077.html
  */
 
+
+
 //get all products
 router.get('/',(req,res,next)=>{
-    Product.find().select('name price _id').exec().then(doc =>{
+    Product.find().select('name price _id productImage').exec().then(doc =>{
         if(doc.length >= 0){
             const dataProducts = {
                 count: doc.length,
@@ -20,6 +43,7 @@ router.get('/',(req,res,next)=>{
                     return {
                         name:doc.name,
                         price:doc.price,
+                        productImage:doc.productImage,
                         _id: doc._id,
                         request:{
                             type:"GET",
@@ -45,15 +69,17 @@ router.get('/',(req,res,next)=>{
 });
 
 //create products
-router.post('/',(req,res,next)=>{
+router.post('/',upload.single('productImage'),(req,res,next)=>{
+    
     const {name,price} = req.body
-    //Insert data
+    Insert data
     if(name != '' && price != ''){
 
         const product = new Product({
             _id: new mongoose.Types.ObjectId(), //random id
             name:name,
-            price:price
+            price:price,
+            productImage:req.file.path
         });
         // save product
         product.save().then(result=>{
@@ -95,7 +121,7 @@ router.post('/',(req,res,next)=>{
 router.get('/:id',(req,res,next)=>{
     const id = ( req.params.id);
     if(id !== undefined || id !== ''){
-        Product.findById(id).select('name price _id').exec().then(doc =>{
+        Product.findById(id).select('name price _id productImage').exec().then(doc =>{
             if(doc){
                 res.status(200).json({
                     message:"succes",

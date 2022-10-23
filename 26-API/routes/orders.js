@@ -6,7 +6,7 @@ const { restart } = require('nodemon');
 const { count } = require('../modules/order');
 
 const Order = require("../modules/order");
-const Product = require('../modules/product');
+const Product = require('../modules/products');
 /**
  * สำหรับ  http สามารถดูได้ที่ลิงค์
  * https://tips.thaiware.com/1077.html
@@ -15,6 +15,7 @@ const Product = require('../modules/product');
 router.get('/',(req,res,next)=>{
     Order.find()
     .select('product quantity _id')
+    .populate('product') // คล้ายกับ select ถ้าเราต้องการแค่ให้แสดง name ให้ใส่แบบนี้  populate('product','name')
     .exec()
     .then(doc =>{
         if(doc)

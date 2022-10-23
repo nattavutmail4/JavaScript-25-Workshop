@@ -15,7 +15,7 @@ mongoose.Promise = global.Promise
 const morgan =require('morgan'); 
 const port = process.env.PORT || 3030; 
 
-const productRouters =  require('./routes/products');
+const productRouters =  require('./routes/product');
 const orderRouters   =  require('./routes/orders');
 const studentRouters =  require('./routes/students');
 const categoryRouter =  require('./routes/category')
@@ -23,7 +23,8 @@ const categoryRouter =  require('./routes/category')
 //morgan('') ประกอบไปด้วย  combined common dev short tiny
 app.use(morgan('dev'));
 
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({extended:false})); 
+app.use('/uploads',express.static('uploads')); //อันนี้ใช้สำหรับตั้ง path ไปยังไฟล์รูป
 app.use(express.json());
 
 app.use((req,res,next)=>{
