@@ -1,0 +1,50 @@
+[{
+  "_id": {
+    "$oid": "6354eab117ea2c7d2b92b569"
+  },
+  "name": "น้ำดืม 1.5ลิตร์",
+  "price": 25,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6354eb0a17ea2c7d2b92b56d"
+  },
+  "name": "SINGHA-RED LEMONSODA-",
+  "price": 16,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6354eb1417ea2c7d2b92b56f"
+  },
+  "name": "Sing Yuzu Lemon soda",
+  "price": 17,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6354eb7917ea2c7d2b92b572"
+  },
+  "name": "COKE ZERO",
+  "price": 10,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6354eb9e17ea2c7d2b92b574"
+  },
+  "name": "COKE ZERO COCA-COLA",
+  "price": 16,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6354ebb617ea2c7d2b92b576"
+  },
+  "name": "DAILY ME Granola",
+  "price": 95,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6354ebd417ea2c7d2b92b579"
+  },
+  "name": "Memix Me Mix Vitamin Drink",
+  "price": 75,
+  "__v": 0
+}]
