@@ -12,16 +12,21 @@ const storage = multer.diskStorage({
     }
 })
 const fileFilter = (req,file,cb)=>{
-    if(file.minetype === 'image/jpeg' || file.minetype ==='image/png'){
-        cb(null,true);
+    if(file.mimetype ==='image/jpeg' ||  file.mimetype ==='image/png' ){
+        cb(null, true)
     }else{
-        cb(null,false);
+        cb(null, false)
+        cb(new Error('I don\'t have a clue!'))
     }
 }
 
+
 const upload = multer({
       storage: storage ,
-      
+      limits:{
+        fileSize:1024*1024*5
+      },
+      fileFilter:fileFilter
 });
 const Product = require('../modules/products');
 
@@ -72,9 +77,7 @@ router.get('/',(req,res,next)=>{
 router.post('/',upload.single('productImage'),(req,res,next)=>{
     
     const {name,price} = req.body
-    Insert data
     if(name != '' && price != ''){
-
         const product = new Product({
             _id: new mongoose.Types.ObjectId(), //random id
             name:name,
@@ -89,6 +92,7 @@ router.post('/',upload.single('productImage'),(req,res,next)=>{
                     response:{
                         name:result.name,
                         price:result.price,
+                        productImage:result.productImage,
                         _id:result._id,
                         request:{
                             type:"GET",
@@ -122,12 +126,14 @@ router.get('/:id',(req,res,next)=>{
     const id = ( req.params.id);
     if(id !== undefined || id !== ''){
         Product.findById(id).select('name price _id productImage').exec().then(doc =>{
+            console.log(doc)
             if(doc){
                 res.status(200).json({
                     message:"succes",
                     response:{
                         name:doc.name,
                         price:doc.price,
+                        productImage:doc.productImage,
                         _id: doc._id,
                         request:{
                             type:"GET",
