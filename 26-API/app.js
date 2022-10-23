@@ -3,6 +3,7 @@ const app  = express();
 const mongoose =require('mongoose');
 require('dotenv').config();
 mongoose.connect(process.env.CONN); //เชื่อมต่อฐานข้อมูล mongoose
+mongoose.Promise = global.Promise
 
 /**
  *  Morgan เป็น middleware สำหรับเก็บ log จาก HTTP request

@@ -9,11 +9,27 @@ const Product = require('../modules/product');
  * https://tips.thaiware.com/1077.html
  */
 
+//get all products
 router.get('/',(req,res,next)=>{
-    Product.find().exec().then(doc =>{
+    Product.find().select('name price _id').exec().then(doc =>{
         if(doc.length >= 0){
+            const dataProducts = {
+                count: doc.length,
+                product: doc.map(doc=>{
+                    
+                    return {
+                        name:doc.name,
+                        price:doc.price,
+                        _id: doc._id,
+                        request:{
+                            type:"GET",
+                            url:`http://localhost:${process.env.PORT || 3030}/api/v1/products/${doc._id}`
+                        }
+                    }
+                })
+            };
             res.status(200).json({
-                response:doc
+                response:dataProducts
             });
         }else{
             res.status(404).json({
@@ -28,10 +44,12 @@ router.get('/',(req,res,next)=>{
     });
 });
 
+//create products
 router.post('/',(req,res,next)=>{
     const {name,price} = req.body
     //Insert data
     if(name != '' && price != ''){
+
         const product = new Product({
             _id: new mongoose.Types.ObjectId(), //random id
             name:name,
@@ -39,20 +57,27 @@ router.post('/',(req,res,next)=>{
         });
         // save product
         product.save().then(result=>{
-            console.log(result)
             if(result){
                 res.status(201).json({
-                    message:"Create Product Success",
-                    response:result
+                    message:"Create product successfully",
+                    response:{
+                        name:result.name,
+                        price:result.price,
+                        _id:result._id,
+                        request:{
+                            type:"GET",
+                            url:`http://localhost:${process.env.PORT || 3030}/api/v1/products/${result._id}`
+                        }
+                    }
                 });
             }else{
                 res.status(404).json({
-                    message:"Create Product False"
+                    message:"Create product False",
+                    error:err
                 })
             }
             
         }).catch((err)=>{
-            console.log(err);
             res.status(500).json({
                 error:err
             })
@@ -65,22 +90,30 @@ router.post('/',(req,res,next)=>{
     }
 });
 
+
+//Search product
 router.get('/:id',(req,res,next)=>{
     const id = ( req.params.id);
     if(id !== undefined || id !== ''){
-        Product.findById(id).exec().then(doc =>{
-            console.log(doc)
+        Product.findById(id).select('name price _id').exec().then(doc =>{
             if(doc){
                 res.status(200).json({
                     message:"succes",
-                    response:doc
+                    response:{
+                        name:doc.name,
+                        price:doc.price,
+                        _id: doc._id,
+                        request:{
+                            type:"GET",
+                            url:`http://localhost:${process.env.PORT || 3030}/api/v1/products/${doc._id}`
+                        }
+                    }
                 });
             }else{
                 res.status(404).json({message:'No valid entry found for provided ID'});
             }
            
         }).catch((err)=>{
-            console.log(err);
             res.status(500).json({error:err})
         })
     }else{
@@ -90,6 +123,8 @@ router.get('/:id',(req,res,next)=>{
     }
 });
 
+
+//Update product
 router.patch('/:id',(req,res,next)=>{
     const id = req.params.id;
     // บังคับ ให้แก้ไขทั้งหมด
@@ -131,14 +166,18 @@ router.patch('/:id',(req,res,next)=>{
      */
     
     for(const ops of req.body){
-        console.log(ops.value)
         UpdateOps[ops.propName] = ops.value
     }
     Product.update({_id:id},{$set:UpdateOps}).exec().then((result)=>{
             if(result){
                 res.status(200).json({
                     message:"Update success",
-                    response: result
+                    response: {
+                        request:{
+                            type:"GET",
+                            url:`http://localhost:${process.env.PORT || 3030}/api/v1/products/${id}` 
+                        }
+                    }
                 });
             }else{
                 res.status(404).json({
@@ -151,13 +190,21 @@ router.patch('/:id',(req,res,next)=>{
 
 });
 
+
+//delete Product
 router.delete('/:id',(req,res,next)=>{
     const id = req.params.id
     Product.remove({_id:id}).exec().then(doc =>{
         if(doc){
             res.status(200).json({
-                message:"Delete Product Success",
-                response:doc
+                message:"Product delete successfully",
+                response: {
+                    request:{
+                        type:"POST",
+                        url:`http://localhost:${process.env.PORT || 3030}/api/v1/products`,
+                        body:{name: "String" , price : 'Number'} 
+                    }
+                }
             });
         }else{
             res.status(404).json({
