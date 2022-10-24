@@ -18,7 +18,8 @@ const port = process.env.PORT || 3030;
 const productRouters =  require('./routes/product');
 const orderRouters   =  require('./routes/orders');
 const studentRouters =  require('./routes/students');
-const categoryRouter =  require('./routes/category')
+const categoryRouter =  require('./routes/category');
+const userRouter = require('./routes/user');
 
 //morgan('') ประกอบไปด้วย  combined common dev short tiny
 app.use(morgan('dev'));
@@ -47,6 +48,7 @@ app.use('/api/v1/products',productRouters);
 app.use('/api/v1/orders',orderRouters);
 app.use('/api/v1/students',studentRouters);
 app.use('/api/v1/category',categoryRouter);
+app.use('/api/v1/user',userRouter);
 
 
 app.use((req,res,next)=>{

@@ -61,7 +61,6 @@ router.post('/',(req,res,next)=>{
            Order.find({ product:req.body.productId}).exec().then(rs=>{
               const count_row =  rs.length;
               if(!count_row){ // เช็ค id product ว่ามีอยู่ในฐานข้อมูลแล้วหรือยัง
-                  console.log(req.body)
                   const order = new Order({
                       _id : new mongoose.Types.ObjectId(),
                       product:req.body.productId,
@@ -82,14 +81,14 @@ router.post('/',(req,res,next)=>{
                              }
                           })
                       }else{
-                        res.status(404).json({
+                        res.status(409).json({
                           message:"Create order false",
                           error:err
                        })
                       }
                   })
               }else{
-                 return res.status(404).json({
+                 return res.status(409).json({
                     message:"มีรายการสินค้านี้ในระบบแล้ว"
                  })
               }
