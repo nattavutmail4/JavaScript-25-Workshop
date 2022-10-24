@@ -21,8 +21,6 @@ const fileFilter = (req,file,cb)=>{ //cb = callback
         cb(new Error('I don\'t have a clue!'))
     }
 }
-
-
 const upload = multer({
       storage: storage ,
       limits:{
@@ -51,6 +49,7 @@ router.get('/',(req,res,next)=>{
                         name:doc.name,
                         price:doc.price,
                         productImage:doc.productImage,
+
                         _id: doc._id,
                         request:{
                             type:"GET",
